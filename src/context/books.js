@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 import React from 'react'
 import { createBook, deleteBook, getAllBooks, updateBook } from "../server/api";
 
@@ -26,12 +26,20 @@ export function Provider({ children }) {
       await updateBook(id, bookName);
       await getAllBooksData();
    };
+   const stableFetchbookData = useCallback(
+      () => {
+         getAllBooksData();
+      },
+      [],
+   )
+
    const valueToShare = {
       books,
       handleAddBook,
       handleDeleteBook,
       handleEditBook,
-      getAllBooksData
+      getAllBooksData,
+      stableFetchbookData
    }
    return (
       <BookContext.Provider value={valueToShare}>

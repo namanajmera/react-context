@@ -6,12 +6,11 @@ import BookList from "./components/BookList";
 import useBooksContext from "./context/context";
 
 function App() {
-  const { getAllBooksData } = useBooksContext();
+  const { stableFetchbookData } = useBooksContext();
 
   useEffect(() => {
-    getAllBooksData();
-    // eslint-disable-next-line
-  }, []);
+    stableFetchbookData();
+  }, [stableFetchbookData]);
 
   return (
     <div>
