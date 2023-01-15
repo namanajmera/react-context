@@ -1,8 +1,10 @@
 import React from "react";
 import { useState } from "react";
+import useBooksContext from "../context/context";
 
-export default function BookEdit({ name, id, handleEditBook, setIsEditMode }) {
+export default function BookEdit({ name, id, setIsEditMode }) {
   const [bookName, setBookName] = useState(name);
+  const { handleEditBook } = useBooksContext();
   const handleEdit = (event) => {
     event.preventDefault();
     handleEditBook(id, bookName);
@@ -37,10 +39,16 @@ export default function BookEdit({ name, id, handleEditBook, setIsEditMode }) {
           </div>
           <div className="field is-grouped">
             <div className="control">
-              <button className="button is-info is-outlined" disabled={!bookName}>
+              <button
+                className="button is-info is-outlined"
+                disabled={!bookName}
+              >
                 Update
               </button>
-              <button className="button is-info is-outlined" onClick={handleCancel}>
+              <button
+                className="button is-info is-outlined"
+                onClick={handleCancel}
+              >
                 Cancel
               </button>
             </div>

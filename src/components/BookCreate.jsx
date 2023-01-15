@@ -1,12 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import useBooksContext from "../context/context";
 
-export default function BookCreate({ onSubmit }) {
+export default function BookCreate() {
   const [bookName, setBookName] = useState("");
 
-  const handleAddBook = (event) => {
+  const { handleAddBook } = useBooksContext();
+
+  const handleAddBookData = (event) => {
     event.preventDefault();
-    onSubmit(bookName);
+    handleAddBook(bookName);
     setBookName("");
   };
 
@@ -16,7 +19,7 @@ export default function BookCreate({ onSubmit }) {
         <div className="notification is-primary">Add a Book</div>
       </div>
       <div className="container">
-        <form action="" onSubmit={handleAddBook}>
+        <form action="" onSubmit={handleAddBookData}>
           <div className="field">
             <label className="label">Title:- </label>
             <div className="control">

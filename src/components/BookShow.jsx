@@ -1,14 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import useBooksContext from "../context/context";
 import BookEdit from "./BookEdit";
 
-export default function BookShow({
-  name,
-  id,
-  handleDeleteBook,
-  handleEditBook,
-}) {
+export default function BookShow({ name, id }) {
   const [isEditMode, setIsEditMode] = useState(false);
+  const { handleDeleteBook } = useBooksContext();
+
   const handleEditBookCondition = () => {
     setIsEditMode(true);
   };
@@ -47,13 +45,7 @@ export default function BookShow({
           </footer>
         </div>
       ) : (
-        <BookEdit
-          name={name}
-          id={id}
-          key={id}
-          handleEditBook={handleEditBook}
-          setIsEditMode={setIsEditMode}
-        />
+        <BookEdit name={name} id={id} key={id} setIsEditMode={setIsEditMode} />
       )}
     </div>
   );
